@@ -1,8 +1,11 @@
 package com.feelydev.shroompointfinal;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
@@ -23,11 +26,13 @@ import com.feelydev.shroompointfinal.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        preferences = getSharedPreferences(Credentials.PREF_FILE_NAME, MODE_PRIVATE);
+        Log.v("User", preferences.getString("userName", "") + " is cool");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         AuthUI.getInstance()
                                 .signOut(getApplicationContext());
+                        preferences.edit().clear().apply();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();

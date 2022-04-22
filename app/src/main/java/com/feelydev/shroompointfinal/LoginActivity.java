@@ -1,17 +1,16 @@
 package com.feelydev.shroompointfinal;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -21,17 +20,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
 
-    SharedPreferences prefs = this.getSharedPreferences("com.feelydev.shroompointfinal", Context.MODE_PRIVATE);
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        preferences = getSharedPreferences(Credentials.PREF_FILE_NAME, MODE_PRIVATE);
         super.onCreate(savedInstanceState);
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -55,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
                     onSignInResult(result);
-                    prefs.edit().clear().apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -68,11 +65,12 @@ public class LoginActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            prefs.edit().putString("userName", user.getDisplayName())
-                    .putString("email", user.getEmail())
-                    .apply();
+            preferences.edit().putString("userName", user.getDisplayName()).apply();
+            preferences.edit().putString("email", user.getEmail()).apply();
+
+            String test = preferences.getString("userName", "");
             
-            Log.v("User", user.getDisplayName());
+            Log.v("User", test + " hi");
             // ...
         } else {
             Toast.makeText(LoginActivity.this,"Error: " + response.getError().toString(), Toast.LENGTH_SHORT).show();
