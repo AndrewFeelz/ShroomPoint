@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "911244388944",
+    "firebase_url": "https://shroompoint-default-rtdb.firebaseio.com",
+    "project_id": "shroompoint",
+    "storage_bucket": "shroompoint.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911244388944:android:21dcfbe7842f7afffd3f55",
+        "android_client_info": {
+          "package_name": "com.feelydev.shroompointfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911244388944-2mri4a8obccddfatgj37a12jp9r04p9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0f7Rl4l9FgjZQ2d0J5KYeJBGNqCYQap0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "911244388944-2mri4a8obccddfatgj37a12jp9r04p9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
