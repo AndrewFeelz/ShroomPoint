@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.feelydev.shroompointfinal.ChampionVerboseActivity;
 import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.adapters.ChampionListRecyclerView;
 import com.feelydev.shroompointfinal.databinding.FragmentChampionsBinding;
@@ -89,6 +90,10 @@ public class ChampionsFragment extends Fragment implements OnChampionListener {
     public void onChampionClick(int position) {
         Toast.makeText(getContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
         String champID = championListRecyclerView.getSelectedChampionId(position);
+        Intent intent = new Intent(getContext(), ChampionVerboseActivity.class);
+        intent.putExtra("champID", champID);
+        startActivity(intent);
+
 
     }
 }
