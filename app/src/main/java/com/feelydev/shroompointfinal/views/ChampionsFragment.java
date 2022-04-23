@@ -12,8 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.feelydev.shroompointfinal.databinding.FragmentChampionsBinding;
 import com.feelydev.shroompointfinal.adapters.ChampionsViewModel;
+import com.feelydev.shroompointfinal.utils.OnChampionListener;
 
-public class ChampionsFragment extends Fragment {
+public class ChampionsFragment extends Fragment implements OnChampionListener {
 
     private FragmentChampionsBinding binding;
 
@@ -30,9 +31,17 @@ public class ChampionsFragment extends Fragment {
         return root;
     }
 
+
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onChampionClick(int position) {
+
     }
 }
