@@ -39,8 +39,10 @@ public class ChampionsFragment extends Fragment implements OnChampionListener {
         View view = inflater.inflate(R.layout.fragment_champions, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         championsViewModel = new ViewModelProvider(this).get(ChampionsViewModel.class);
-
+        ConfigureRecyclerView();
+        getChampionListAPI();
         ObserveChangesToList();
+
 
 
 
@@ -53,6 +55,10 @@ public class ChampionsFragment extends Fragment implements OnChampionListener {
         return view;
     }
 
+    //Call from VIEWMODELS
+    private void getChampionListAPI() {
+        championsViewModel.getChampionListAPI();
+    }
 
     private void ObserveChangesToList(){
         championsViewModel.getChampionList().observe(getViewLifecycleOwner(), new Observer<List<ChampionSimple>>() {
