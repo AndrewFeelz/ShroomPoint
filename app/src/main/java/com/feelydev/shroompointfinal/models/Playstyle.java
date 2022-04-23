@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName;
 public class Playstyle {
 
     @SerializedName("damage")
-    private int damage;
+    private String damage;
 
     @SerializedName("durability")
-    private int durability;
+    private String durability;
 
     @SerializedName("crowdControl")
-    private int crowdControl;
+    private String crowdControl;
 
     @SerializedName("mobility")
-    private int mobility;
+    private String mobility;
 
     @SerializedName("utility")
-    private int utility;
+    private String utility;
 
     public Playstyle() {
     }
 
-    public Playstyle(int damage, int durability, int crowdControl, int mobility, int utility) {
+    public Playstyle(String damage, String durability, String crowdControl, String mobility, String utility) {
         this.damage = damage;
         this.durability = durability;
         this.crowdControl = crowdControl;
@@ -30,23 +30,23 @@ public class Playstyle {
         this.utility = utility;
     }
 
-    public int getDamage() {
+    public String getDamage() {
         return damage;
     }
 
-    public int getDurability() {
+    public String getDurability() {
         return durability;
     }
 
-    public int getCrowdControl() {
+    public String getCrowdControl() {
         return crowdControl;
     }
 
-    public int getMobility() {
+    public String getMobility() {
         return mobility;
     }
 
-    public int getUtility() {
+    public String getUtility() {
         return utility;
     }
 }

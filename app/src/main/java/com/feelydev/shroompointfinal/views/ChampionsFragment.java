@@ -43,16 +43,6 @@ public class ChampionsFragment extends Fragment implements OnChampionListener {
         ConfigureRecyclerView();
         getChampionListAPI();
         ObserveChangesToList();
-
-
-
-
-
-
-        ChampionsViewModel championsViewModel =
-                new ViewModelProvider(this).get(ChampionsViewModel.class);
-
-
         return view;
     }
 
