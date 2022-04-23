@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal.ui.notifications;
+package com.feelydev.shroompointfinal.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal.ui.home;
+package com.feelydev.shroompointfinal.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.feelydev.shroompointfinal.databinding.FragmentChampionsBinding;
+import com.feelydev.shroompointfinal.adapters.ChampionsViewModel;
 
 public class ChampionsFragment extends Fragment {
 

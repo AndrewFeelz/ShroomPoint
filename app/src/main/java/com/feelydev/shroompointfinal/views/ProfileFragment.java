@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal.ui.notifications;
+package com.feelydev.shroompointfinal.views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.feelydev.shroompointfinal.adapters.ProfileViewModel;
 import com.feelydev.shroompointfinal.utils.Credentials;
 import com.feelydev.shroompointfinal.databinding.FragmentProfileBinding;
 

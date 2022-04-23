@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal.ui.home;
+package com.feelydev.shroompointfinal.adapters;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
