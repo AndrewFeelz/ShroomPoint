@@ -33,7 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build()
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.AnonymousBuilder().build()
         );
 
         Intent signInIntent = AuthUI.getInstance()
@@ -66,10 +67,14 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             preferences.edit().putString("userName", user.getDisplayName()).apply();
             preferences.edit().putString("email", user.getEmail()).apply();
+            preferences.edit().putString("userID", user.getUid()).apply();
 
             String test = preferences.getString("userName", "");
+            String test2 = preferences.getString("email", "");
+
             
             Log.v("User", test + " hi");
+            Log.v("User", test2 + " hi");
             // ...
         } else {
             Toast.makeText(LoginActivity.this,"Error: " + response.getError().toString(), Toast.LENGTH_SHORT).show();

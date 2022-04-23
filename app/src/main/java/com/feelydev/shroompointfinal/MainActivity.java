@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     SharedPreferences preferences;
 
+    //User
+    private String username;
+    private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

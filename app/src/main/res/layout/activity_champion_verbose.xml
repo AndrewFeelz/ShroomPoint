@@ -23,9 +23,9 @@
                 android:id="@+id/imgChampionSplash"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
+                android:contentDescription="@string/champion_splash_art"
                 android:padding="2dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/champion_splash_art" />
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/txtChampName"
@@ -60,9 +60,10 @@
             <RelativeLayout
                 android:id="@+id/bioArea"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/txtChampTitle"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:id="@+id/txtBioLabel"
@@ -77,7 +78,7 @@
                 <TextView
                     android:id="@+id/txtBio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/txtBioLabel"
                     android:paddingHorizontal="20dp"/>
 
@@ -124,7 +125,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="1"
-                    android:layout_column="2"/>
+                    android:layout_column="2"
+                    android:paddingEnd="90dp"/>
 
                 <TextView
                     android:id="@+id/txtDamageLabel"
@@ -139,7 +141,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="2"
-                    android:layout_column="2"/>
+                    android:layout_column="2"
+                    android:paddingEnd="90dp"/>
 
                 <TextView
                     android:id="@+id/txtDurabilityLabel"
@@ -154,7 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_row="3"
-                    android:layout_column="2"/>
+                    android:layout_column="2"
+                    android:paddingEnd="90dp"/>
 
                 <TextView
                     android:layout_row="3"
@@ -232,7 +236,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtAbilityLabel"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
                 <RelativeLayout
                     android:id="@+id/PassiveArea"
