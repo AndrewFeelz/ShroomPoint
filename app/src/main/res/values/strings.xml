@@ -10,7 +10,7 @@
 
     //For Champ Verbose Fragment
     <string name="style">Style: </string>
-    <string name="space" >       </string>
+    <string name="space">       </string>
     <string name="bio">Bio:</string>
     <string name="stats">Stats:</string>
     <string name="difficulty">Difficulty:</string>

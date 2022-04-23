@@ -1,5 +1,6 @@
 package com.feelydev.shroompointfinal.adapters;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -10,6 +11,7 @@ import com.feelydev.shroompointfinal.models.ChampionSimple;
 import com.feelydev.shroompointfinal.utils.Credentials;
 import com.feelydev.shroompointfinal.utils.RiotCommunityAPI;
 
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,12 +37,14 @@ public class ChampionsViewModel extends ViewModel {
 
         Call<List<ChampionSimple>> champListCall = service.getAllChampions();
         champListCall.enqueue(new Callback<List<ChampionSimple>>() {
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(Call<List<ChampionSimple>> call, Response<List<ChampionSimple>> response) {
                 int i = 1;
                 if (response.code() == 200){
                     championListing = response.body();
                     championListing.remove(0);
+                    championListing.sort(Comparator.comparing(ChampionSimple::getName));
                     championList.postValue(championListing);
                     for (ChampionSimple simple: championListing) {
                         Log.v("Logger", simple.getName() + " count: " + i);

@@ -88,6 +88,7 @@ public class ChampionsFragment extends Fragment implements OnChampionListener {
     @Override
     public void onChampionClick(int position) {
         Toast.makeText(getContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
+        String champID = championListRecyclerView.getSelectedChampionId(position);
 
     }
 }
