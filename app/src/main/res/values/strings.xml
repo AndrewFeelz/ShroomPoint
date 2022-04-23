@@ -5,7 +5,32 @@
     <string name="title_profile">Profile</string>
     <string name="a_mushroom">A mushroom</string>
     <string name="loginSub">A LoL Companion</string>
+    <string name="txt_champion_image">Champion Image</string>
     <string name="login">Log In</string>
+
+    //For Champ Verbose Fragment
+    <string name="style">Style: </string>
+    <string name="space" >       </string>
+    <string name="bio">Bio:</string>
+    <string name="stats">Stats:</string>
+    <string name="difficulty">Difficulty:</string>
+    <string name="damage">Damage:</string>
+    <string name="durability">Durability:</string>
+    <string name="crowd_control">Crowd Control:</string>
+    <string name="mobility">Mobility:</string>
+    <string name="utility">Utility:</string>
+    <string name="abilities_passive_q_w_e_r">Abilities (Passive, Q, W, E, R):</string>
+    <string name="passive">Passive</string>
+    <string name="q">Q</string>
+    <string name="w">W</string>
+    <string name="e">E</string>
+    <string name="r">R</string>
+    <string name="champion_splash_art">Champion Splash Art</string>
+    <string name="passive_thumbnail_art">Passive Thumbnail Art</string>
+    <string name="q_ability_art">Q Ability Art</string>
+    <string name="w_ability_art">W Ability Art</string>
+    <string name="e_ability_art">E Ability Art</string>
+    <string name="r_ability_art">R Ability Art</string>
 
 
 </resources>

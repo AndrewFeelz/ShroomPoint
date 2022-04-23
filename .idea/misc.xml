@@ -10,6 +10,8 @@
         <entry key="..\:/Spring 2022/MobileDeviceProgramming/ShroomPointFinal/app/src/main/res/layout/fragment_champions.xml" value="0.5452898550724637" />
         <entry key="..\:/Spring 2022/MobileDeviceProgramming/ShroomPointFinal/app/src/main/res/layout/fragment_profile.xml" value="0.5452898550724637" />
         <entry key="..\:/Spring 2022/MobileDeviceProgramming/ShroomPointFinal/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33240740740740743" />
+        <entry key="app/src/main/res/layout/champion_list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/champion_verbose_fragment.xml" value="0.17274569402228976" />
       </map>
     </option>
   </component>
