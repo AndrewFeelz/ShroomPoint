@@ -1,47 +1,87 @@
 package com.feelydev.shroompointfinal.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.feelydev.shroompointfinal.R;
+import com.feelydev.shroompointfinal.adapters.ChampionListRecyclerView;
 import com.feelydev.shroompointfinal.databinding.FragmentChampionsBinding;
 import com.feelydev.shroompointfinal.adapters.ChampionsViewModel;
+import com.feelydev.shroompointfinal.models.ChampionSimple;
 import com.feelydev.shroompointfinal.utils.OnChampionListener;
+import com.feelydev.shroompointfinal.utils.ScreenUtility;
+
+import java.util.List;
 
 public class ChampionsFragment extends Fragment implements OnChampionListener {
 
-    private FragmentChampionsBinding binding;
+    //RecyclerView
+    private RecyclerView recyclerView;
+    private ChampionListRecyclerView championListRecyclerView;
+
+    //ViewModel
+    private ChampionsViewModel championsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_champions, container, false);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        championsViewModel = new ViewModelProvider(this).get(ChampionsViewModel.class);
+
+        ObserveChangesToList();
+
+
+
+
+
         ChampionsViewModel championsViewModel =
                 new ViewModelProvider(this).get(ChampionsViewModel.class);
 
-        binding = FragmentChampionsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        championsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return view;
     }
 
 
+    private void ObserveChangesToList(){
+        championsViewModel.getChampionList().observe(getViewLifecycleOwner(), new Observer<List<ChampionSimple>>() {
+            @Override
+            public void onChanged(List<ChampionSimple> championSimples) {
+                if (championSimples != null) {
+                    championListRecyclerView.setChampionSimpleList(championSimples);
+                }
 
+            };
+        });
+    }
+
+    private void ConfigureRecyclerView() {
+        championListRecyclerView = new ChampionListRecyclerView(this);
+        recyclerView.setAdapter(championListRecyclerView);
+
+        int numberOfColumns = ScreenUtility.calculateNumberOfColumns(getContext(), 140);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 
     @Override
     public void onChampionClick(int position) {
+        Toast.makeText(getContext(), "Position = " + position, Toast.LENGTH_SHORT).show();
 
     }
 }
