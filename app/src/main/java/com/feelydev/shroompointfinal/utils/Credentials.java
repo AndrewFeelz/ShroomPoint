@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal;
+package com.feelydev.shroompointfinal.utils;
 
 public class Credentials {
 

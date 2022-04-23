@@ -3,7 +3,6 @@ package com.feelydev.shroompointfinal.ui.notifications;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-import com.feelydev.shroompointfinal.Credentials;
+import com.feelydev.shroompointfinal.utils.Credentials;
 import com.feelydev.shroompointfinal.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
