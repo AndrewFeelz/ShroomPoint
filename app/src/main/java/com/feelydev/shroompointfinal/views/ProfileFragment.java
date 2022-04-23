@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.feelydev.shroompointfinal.adapters.ProfileViewModel;
-import com.feelydev.shroompointfinal.utils.Credentials;
 import com.feelydev.shroompointfinal.databinding.FragmentProfileBinding;
+import com.feelydev.shroompointfinal.utils.Credentials;
 
 public class ProfileFragment extends Fragment {
 

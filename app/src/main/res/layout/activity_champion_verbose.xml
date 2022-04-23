@@ -23,7 +23,6 @@
                 android:id="@+id/imgChampionSplash"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:background="#000000"
                 android:padding="2dp"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/champion_splash_art" />
