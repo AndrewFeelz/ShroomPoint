@@ -96,7 +96,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
                 .load(Credentials.CHAMP_SPELL_SQUARE_URL + championActivityVerbose.getPassive().getThumbnailPath())
                 .into(imgPassive);
         txtPassiveName.setText(championActivityVerbose.getPassive().getName());
-        txtPassiveDesc.setText(championActivityVerbose.getPassive().getDesc());
+        txtPassiveDesc.setText(championActivityVerbose.getPassive().getDesc().replaceAll("\\<.*?\\>",""));
 
         for (Spell spell: championActivityVerbose.getSpells()) {
             ImageView img =  spellImgList.get(i);
@@ -108,7 +108,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
             name.setText(spell.getName());
 
             TextView desc = spellDescList.get(i);
-            desc.setText(spell.getDesc());
+            desc.setText(spell.getDesc().replaceAll("\\<.*?\\>",""));
 
             i++;
         }

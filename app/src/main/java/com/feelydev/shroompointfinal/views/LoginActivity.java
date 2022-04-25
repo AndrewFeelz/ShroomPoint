@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             preferences.edit().putString("userID", userId).apply();
             Log.v("firebase", userId + " is the current id");
 
-            if(!username.equals("") && !email.equals("")){
+            if(!userId.equals("") && !email.equals("")){
                 RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "Add bio...");
                 mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override

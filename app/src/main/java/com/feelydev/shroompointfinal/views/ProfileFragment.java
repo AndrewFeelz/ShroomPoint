@@ -97,7 +97,6 @@ public class ProfileFragment extends Fragment {
             }
 
 
-            response = "i am retarded.";
             mDatabase.child("users").child(userId).child("bio").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
