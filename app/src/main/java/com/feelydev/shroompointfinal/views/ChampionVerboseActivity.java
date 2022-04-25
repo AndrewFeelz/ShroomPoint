@@ -76,9 +76,10 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         Collections.addAll(spellImgList, imgQ, imgW, imgE, imgR);
         Collections.addAll(spellNameList, txtQName, txtWName, txtEName, txtRName);
         Collections.addAll(spellDescList, txtQDesc, txtWDesc, txtEDesc, txtRDesc );
-
+        Log.v("Taggy", "My Champ is "+ championActivityVerbose.getId());
+        String restOfUrl = championActivityVerbose.getId() + "/" + championActivityVerbose.getId() + "000.jpg";
         Glide.with(this)
-                .load(Credentials.CHAMP_SPLASH_URL + championActivityVerbose.getId() + "/" + championActivityVerbose.getId() + "000.jpg")
+                .load(Credentials.CHAMP_SPLASH_URL + restOfUrl)
                 .into(imgSplash);
         txtName.setText(championActivityVerbose.getName());
         txtTitle.setText(championActivityVerbose.getTitle());
@@ -115,7 +116,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
 
 
     private void initializeWidgets() {
-        imgSplash = binding.imgChampionSplash;
+        imgSplash = findViewById(R.id.imgChampionSplash);
         imgPassive = findViewById(R.id.imgPassive);
         imgQ = findViewById(R.id.imgQ);
         imgW = findViewById(R.id.imgW);
@@ -126,7 +127,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtChampTitle);
         txtBio = findViewById(R.id.txtBio);
         txtDifficulty = findViewById(R.id.txtDifficultyNum);
-        txtDamage = binding.txtDamageNum;
+        txtDamage = findViewById(R.id.txtDamageNum);
         txtDurability = findViewById(R.id.txtDurabilityNum);
         txtCC = findViewById(R.id.txtCCNum);
         txtMobility = findViewById(R.id.txtMobilityNum);
