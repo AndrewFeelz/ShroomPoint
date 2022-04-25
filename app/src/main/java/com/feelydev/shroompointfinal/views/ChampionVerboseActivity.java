@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal;
+package com.feelydev.shroompointfinal.views;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.adapters.ChampionVerboseViewModel;
 import com.feelydev.shroompointfinal.databinding.ActivityChampionVerboseBinding;
 import com.feelydev.shroompointfinal.models.ChampionVerbose;

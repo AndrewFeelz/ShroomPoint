@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-import com.feelydev.shroompointfinal.LoginActivity;
-import com.feelydev.shroompointfinal.MainActivity;
-import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.adapters.ProfileViewModel;
 import com.feelydev.shroompointfinal.databinding.FragmentProfileBinding;
 import com.feelydev.shroompointfinal.utils.Credentials;
-import com.firebase.ui.auth.AuthUI;
 
 public class ProfileFragment extends Fragment {
 

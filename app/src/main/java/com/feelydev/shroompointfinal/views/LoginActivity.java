@@ -1,4 +1,4 @@
-package com.feelydev.shroompointfinal;
+package com.feelydev.shroompointfinal.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.utils.Credentials;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;

@@ -1,5 +1,6 @@
-package com.feelydev.shroompointfinal;
+package com.feelydev.shroompointfinal.views;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.utils.Credentials;
+import com.feelydev.shroompointfinal.views.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,11 +33,16 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String email;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //get User
         preferences = getSharedPreferences(Credentials.PREF_FILE_NAME, MODE_PRIVATE);
-        Log.v("User", preferences.getString("userName", "") + " is cool");
+        username = preferences.getString("userName", "");
+        email = preferences.getString("email", "");
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -49,12 +57,22 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
 
         BottomNavigationItemView logoutBtn = findViewById(R.id.logout);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+        if (username.equals("") && email.equals("")){
+            logoutBtn.setTitle("Login");
+            logoutBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    login();
+                }
+            });
+        } else{
+            logoutBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    logout();
+                }
+            });
+        }
     }
 
     private void logout() {
@@ -65,6 +83,27 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         AuthUI.getInstance()
                                 .signOut(getApplicationContext());
+                        preferences.edit().clear().apply();
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Nah Dawg", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // CANCEL
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void login(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Return to the Login Screen")
+                .setTitle("Wait!")
+                .setPositiveButton("For Sure", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         preferences.edit().clear().apply();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);

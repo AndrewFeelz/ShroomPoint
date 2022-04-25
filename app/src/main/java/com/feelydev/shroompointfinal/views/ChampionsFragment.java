@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,10 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.feelydev.shroompointfinal.ChampionVerboseActivity;
 import com.feelydev.shroompointfinal.R;
 import com.feelydev.shroompointfinal.adapters.ChampionListRecyclerView;
-import com.feelydev.shroompointfinal.databinding.FragmentChampionsBinding;
 import com.feelydev.shroompointfinal.adapters.ChampionsViewModel;
 import com.feelydev.shroompointfinal.models.ChampionSimple;
 import com.feelydev.shroompointfinal.utils.OnChampionListener;
