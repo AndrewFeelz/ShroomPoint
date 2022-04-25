@@ -37,6 +37,13 @@
     <string name="edit_button">edit button</string>
     <string name="user_s_bio">Enter Bio Here…</string>
     <string name="enter_bio">Enter Bio: (max 250)</string>
+    <string name="asSort">Assasin Sort Button</string>
+    <string name="sort_fighters">Sort Fighters</string>
+    <string name="sort_all">Sort All</string>
+    <string name="sort_mages">Sort Mages</string>
+    <string name="sort_marksmen">Sort Marksmen</string>
+    <string name="sort_support">Sort Support</string>
+    <string name="sort_tank">Sort Tank</string>
 
 
 </resources>

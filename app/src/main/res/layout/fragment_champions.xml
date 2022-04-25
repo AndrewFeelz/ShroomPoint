@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filterArea"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,10 +10,84 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/sortArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnSortAll"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/all_logo"
+                android:contentDescription="@string/sort_all"
+                />
+
+            <ImageButton
+                android:id="@+id/btnSortAssasins"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/asSort"
+                android:scaleType="fitXY"
+                android:src="@drawable/assasin_logo" />
+
+            <ImageButton
+                android:id="@+id/btnSortFighters"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/sort_fighters"
+                android:scaleType="fitXY"
+                android:src="@drawable/fighter_logo"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/btnSortMages"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/sort_mages"
+                android:scaleType="fitXY"
+                android:src="@drawable/mage_logo"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/btnSortMarksmen"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/sort_marksmen"
+                android:scaleType="fitXY"
+                android:src="@drawable/marksmen_logo"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/btnSortSupport"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/sort_support"
+                android:scaleType="fitXY"
+                android:src="@drawable/support_logo"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/btnSortTank"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/sort_tank"
+                android:scaleType="fitXY"
+                android:src="@drawable/tank_logo"
+                tools:ignore="ImageContrastCheck" />
+        </LinearLayout>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/sortArea"
+            android:layout_marginTop="50dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
