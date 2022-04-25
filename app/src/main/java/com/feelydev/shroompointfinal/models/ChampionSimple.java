@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class ChampionSimple implements Parcelable {
 
     @SerializedName("id")
@@ -16,19 +18,24 @@ public class ChampionSimple implements Parcelable {
     @SerializedName("alias")
     private String alias;
 
+    @SerializedName("roles")
+    private ArrayList<String> roles;
+
     public ChampionSimple() {
     }
 
-    public ChampionSimple(int id, String name, String alias) {
+    public ChampionSimple(int id, String name, String alias, ArrayList<String> roles) {
         this.id = id;
         this.name = name;
         this.alias = alias;
+        this.roles = roles;
     }
 
     protected ChampionSimple(Parcel in) {
         id = in.readInt();
         name = in.readString();
         alias = in.readString();
+        roles = in.createStringArrayList();
     }
 
     public static final Creator<ChampionSimple> CREATOR = new Creator<ChampionSimple>() {
@@ -51,7 +58,17 @@ public class ChampionSimple implements Parcelable {
         return name;
     }
 
-    public String getAlias() { return alias; }
+    public String getAlias() {
+        return alias;
+    }
+
+    public String getRoles() {
+        String roleReturn ="";
+        for (String role: roles) {
+            roleReturn+= role + " ";
+        }
+        return roleReturn;
+    }
 
     @Override
     public int describeContents() {
@@ -63,5 +80,6 @@ public class ChampionSimple implements Parcelable {
         parcel.writeInt(id);
         parcel.writeString(name);
         parcel.writeString(alias);
+        parcel.writeStringList(roles);
     }
 }

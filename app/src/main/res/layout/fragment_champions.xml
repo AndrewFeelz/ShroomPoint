@@ -29,7 +29,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/btnSortAssasins"
+                android:id="@+id/btnSortAssassins"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/asSort"
@@ -80,6 +80,15 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/tank_logo"
                 tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/txtSortType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/txtsorttype"
+                android:textSize="12sp"
+                android:textStyle="italic" />
         </LinearLayout>
 
 

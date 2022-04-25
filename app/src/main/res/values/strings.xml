@@ -44,6 +44,7 @@
     <string name="sort_marksmen">Sort Marksmen</string>
     <string name="sort_support">Sort Support</string>
     <string name="sort_tank">Sort Tank</string>
+    <string name="txtsorttype">All</string>
 
 
 </resources>

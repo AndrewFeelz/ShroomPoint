@@ -13,6 +13,7 @@ import com.feelydev.shroompointfinal.models.ChampionSimple;
 import com.feelydev.shroompointfinal.utils.Credentials;
 import com.feelydev.shroompointfinal.utils.OnChampionListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChampionListRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -34,7 +35,7 @@ public class ChampionListRecyclerView extends RecyclerView.Adapter<RecyclerView.
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
         ((ChampionListViewHolder)holder).name.setText(championSimpleList.get(i).getName());
-
+        ((ChampionListViewHolder)holder).roles.setText(championSimpleList.get(i).getRoles());
         //Use Glide for image
         Glide.with(holder.itemView.getContext())
                 .load(Credentials.BASE_URL + "champion-icons/" + championSimpleList.get(i).getId() + ".png")

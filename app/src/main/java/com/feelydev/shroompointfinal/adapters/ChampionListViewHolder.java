@@ -13,6 +13,7 @@ import com.feelydev.shroompointfinal.utils.OnChampionListener;
 public class ChampionListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     //Widgets
     TextView name;
+    TextView roles;
     ImageView championThumbnail;
 
     //ClickListener
@@ -23,6 +24,7 @@ public class ChampionListViewHolder extends RecyclerView.ViewHolder implements V
         ChampionListener = onChampionListener;
 
         name = itemView.findViewById(R.id.txtChampionName);
+        roles = itemView.findViewById(R.id.txtChampRoles);
         championThumbnail = itemView.findViewById(R.id.imgChampionThumbnail);
         //may
         itemView.setOnClickListener(this);
