@@ -8,16 +8,23 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.feelydev.shroompointfinal.R;
+import com.feelydev.shroompointfinal.models.RegisterdUser;
 import com.feelydev.shroompointfinal.utils.Credentials;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +32,16 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
+    private DatabaseReference mDatabase;
+    private String userId;
+    private String username;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         preferences = getSharedPreferences(Credentials.PREF_FILE_NAME, MODE_PRIVATE);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         super.onCreate(savedInstanceState);
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -66,17 +78,27 @@ public class LoginActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            preferences.edit().putString("userName", user.getDisplayName()).apply();
-            preferences.edit().putString("email", user.getEmail()).apply();
-            preferences.edit().putString("userID", user.getUid()).apply();
+            userId = user.getUid();
+            username = user.getDisplayName();
+            email = user.getEmail();
+            RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "");
 
-            String test = preferences.getString("userName", "");
-            String test2 = preferences.getString("email", "");
+            preferences.edit().putString("userName", username).apply();
+            preferences.edit().putString("email", email).apply();
+            preferences.edit().putString("userID", userId).apply();
 
-            
-            Log.v("User", test + " hi");
-            Log.v("User", test2 + " hi");
-            // ...
+            mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.v("firebase", "Error getting data", task.getException());
+                        mDatabase.child("users").child(userId).setValue(registerdUser);
+                    }
+                    else {
+                        Log.v("firebase", String.valueOf(task.getResult().getValue()));
+                    }
+                }
+            });
         } else {
             Toast.makeText(LoginActivity.this,"Error: " + response.getError().toString(), Toast.LENGTH_SHORT).show();
         }

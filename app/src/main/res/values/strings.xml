@@ -31,6 +31,12 @@
     <string name="w_ability_art">W Ability Art</string>
     <string name="e_ability_art">E Ability Art</string>
     <string name="r_ability_art">R Ability Art</string>
+    //Profile fragment
+    <string name="favorite_champions">Favorite Champions</string>
+    //Edit Bio Dialog
+    <string name="edit_button">edit button</string>
+    <string name="user_s_bio">Enter Bio Here…</string>
+    <string name="enter_bio">Enter Bio: (max 250)</string>
 
 
 </resources>
