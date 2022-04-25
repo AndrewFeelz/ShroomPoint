@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.teemo_laugh);
+        mp.start();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to log out?")
                 .setTitle("Wait!")
@@ -87,11 +91,13 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();
+                        mp.stop();
                     }
                 })
                 .setNegativeButton("Nah Dawg", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // CANCEL
+                        mp.stop();
                     }
                 });
         AlertDialog dialog = builder.create();
@@ -99,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(){
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.teemo_laugh);
+        mp.start();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Return to the Login Screen")
                 .setTitle("Wait!")
@@ -107,12 +115,14 @@ public class MainActivity extends AppCompatActivity {
                         preferences.edit().clear().apply();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+                        mp.stop();
                         finish();
                     }
                 })
                 .setNegativeButton("Nah Dawg", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // CANCEL
+                        mp.stop();
                     }
                 });
         AlertDialog dialog = builder.create();
