@@ -2,6 +2,7 @@ package com.feelydev.shroompointfinal.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -57,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                 .setTheme(R.style.Theme_ShroomPointFinal)
                 .build();
         signInLauncher.launch(signInIntent);
-
     }
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -81,24 +81,29 @@ public class LoginActivity extends AppCompatActivity {
             userId = user.getUid();
             username = user.getDisplayName();
             email = user.getEmail();
-            RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "");
 
             preferences.edit().putString("userName", username).apply();
             preferences.edit().putString("email", email).apply();
             preferences.edit().putString("userID", userId).apply();
+            Log.v("firebase", userId + " is the current id");
 
-            mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.v("firebase", "Error getting data", task.getException());
-                        mDatabase.child("users").child(userId).setValue(registerdUser);
+            if(!username.equals("") && !email.equals("")){
+                RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "Add bio...");
+                mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.v("firebase", "Error getting data", task.getException());
+                        }
+                        else {
+                            Log.v("firebase", String.valueOf(task.getResult().getValue()));
+                            if(task.getResult().getValue() == null){
+                                mDatabase.child("users").child(userId).setValue(registerdUser);
+                            }
+                        }
                     }
-                    else {
-                        Log.v("firebase", String.valueOf(task.getResult().getValue()));
-                    }
-                }
-            });
+                });
+            }
         } else {
             Toast.makeText(LoginActivity.this,"Error: " + response.getError().toString(), Toast.LENGTH_SHORT).show();
         }
