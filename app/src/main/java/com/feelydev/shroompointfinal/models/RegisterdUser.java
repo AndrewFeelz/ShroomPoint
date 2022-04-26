@@ -6,14 +6,16 @@ public class RegisterdUser {
     private String userName;
     private String email;
     private String bio;
+    private String role;
 
     public RegisterdUser(){}
 
-    public RegisterdUser(String userId, String userName, String email, String bio) {
+    public RegisterdUser(String userId, String userName, String email, String bio, String role) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.bio = bio;
+        this.role = role;
     }
 
     public String getUserName() {
@@ -29,4 +31,6 @@ public class RegisterdUser {
     }
 
     public String getUserId() { return userId; }
+
+    public String getRole() { return role; }
 }

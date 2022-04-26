@@ -43,10 +43,11 @@ public class ProfileFragment extends Fragment {
     private String username;
     private String email;
     private String userId;
-    private String response;
+    private String role;
+    private String bio;
     //inflation and fragment wide access widgets
     private FragmentProfileBinding binding;
-    private ImageButton editBio;
+    private ImageButton editBio, editUsers;
     private TextView txtBio;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,6 +58,8 @@ public class ProfileFragment extends Fragment {
 //        Toast.makeText(getContext(), "Hello " + username, Toast.LENGTH_LONG).show();
         email = preferences.getString("email", "");
         userId = preferences.getString("userID", "");
+        role = preferences.getString("role", "");
+        bio = preferences.getString("bio", "");
         if (username.equals("") && email.equals("")){
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("You are a guest, login to access your profile page.")
@@ -86,7 +89,12 @@ public class ProfileFragment extends Fragment {
             View root = binding.getRoot();
 
             editBio = (ImageButton) rootView.findViewById(R.id.btnEdit);
+
+
+            editUsers = (ImageButton) rootView.findViewById(R.id.btnAdmin);
             txtBio = (TextView) rootView.findViewById(R.id.txtBioInfo);
+            Log.v("bio", bio + "from frag");
+            txtBio.setText(bio);
             final TextView txtUsername = (TextView) rootView.findViewById(R.id.txtUserName);
             final ImageView imgUserProf = (ImageView) rootView.findViewById(R.id.imgUserAvatar);
 
@@ -96,57 +104,25 @@ public class ProfileFragment extends Fragment {
                 txtUsername.setText(username);
             }
 
-
-            mDatabase.child("users").child(userId).child("bio").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.e("firebase", "Error getting data", task.getException());
-                    }
-                    else {
-                        String bioText = String.valueOf(task.getResult().getValue());
-                        Toast.makeText(getContext(), String.valueOf(task.getResult().getValue()), Toast.LENGTH_LONG).show();
-                        txtBio.setText(bioText);
-                    }
-                }
-            });
+            if (!role.equals("admin")){
+                editUsers.setVisibility(View.INVISIBLE);
+            }
 
 
             Glide.with(getContext())
                     .load(Credentials.BASE_PROF_ICON_URL + profileViewModel.getRng().toString() + ".jpg")
                     .into(imgUserProf);
 
-            setBioListners();
+            editBio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialogEditBio();
+                }
+            });
 
             return rootView;
         }
         return null;
-    }
-
-    private void setBioListners() {
-        ValueEventListener bioChangeListner = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                RegisterdUser registerdUser = snapshot.getValue(RegisterdUser.class);
-                if(registerdUser.getBio() == null){
-                    txtBio.setText(" ");
-                } else {
-                    txtBio.setText(registerdUser.getBio());
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        mDatabase.addValueEventListener(bioChangeListner);
-
-        editBio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialogEditBio();
-            }
-        });
     }
 
     private void alertDialogEditBio() {
@@ -185,6 +161,7 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getContext(), "Entered: "+userInput.getText().toString(), Toast.LENGTH_LONG).show();
                         mDatabase.child("users").child(userId).child("bio").setValue(userInput.getText().toString());
                         txtBio.setText(userInput.getText().toString());
+                        preferences.edit().putString("bio", userInput.getText().toString()).apply();
                     }
                 })
                 .setNegativeButton("Cancel",

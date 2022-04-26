@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private String userId;
     private String username;
     private String email;
+    private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +83,14 @@ public class LoginActivity extends AppCompatActivity {
             username = user.getDisplayName();
             email = user.getEmail();
 
+
             preferences.edit().putString("userName", username).apply();
             preferences.edit().putString("email", email).apply();
             preferences.edit().putString("userID", userId).apply();
             Log.v("firebase", userId + " is the current id");
 
-            if(!userId.equals("") && !email.equals("")){
-                RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "Add bio...");
+            if(username != null && email != null){
+                RegisterdUser registerdUser = new RegisterdUser(userId, username, email, "Add bio...", "user");
                 mDatabase.child("users").child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -100,6 +102,10 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.getResult().getValue() == null){
                                 mDatabase.child("users").child(userId).setValue(registerdUser);
                             }
+                            RegisterdUser rUser = task.getResult().getValue(RegisterdUser.class);
+                            preferences.edit().putString("role", rUser.getRole()).apply();
+                            Log.v("bio", rUser.getBio());
+                            preferences.edit().putString("bio", rUser.getBio()).apply();
                         }
                     }
                 });
