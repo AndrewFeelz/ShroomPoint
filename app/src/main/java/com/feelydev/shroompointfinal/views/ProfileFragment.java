@@ -27,6 +27,7 @@ import com.feelydev.shroompointfinal.adapters.ProfileViewModel;
 import com.feelydev.shroompointfinal.databinding.FragmentProfileBinding;
 import com.feelydev.shroompointfinal.models.RegisterdUser;
 import com.feelydev.shroompointfinal.utils.Credentials;
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -106,6 +107,27 @@ public class ProfileFragment extends Fragment {
 
             if (!role.equals("admin")){
                 editUsers.setVisibility(View.INVISIBLE);
+            } else {
+                editUsers.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("Are you sure you want to NUKE THE DATABASE?")
+                                .setTitle("Wait!")
+                                .setPositiveButton("End my Suffering", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+//                                mDatabase.removeValue();
+                                    }
+                                })
+                                .setNegativeButton("Nah Dawg", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(getContext(), "Crisis Averted", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                });
             }
 
 
