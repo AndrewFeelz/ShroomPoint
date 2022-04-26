@@ -45,6 +45,9 @@
     <string name="sort_support">Sort Support</string>
     <string name="sort_tank">Sort Tank</string>
     <string name="txtsorttype">All</string>
+    <string name="set_fav">Set Fav</string>
+    <string name="set_champ_as_fav">Set Champ as Fav</string>
+    <string name="fav_status">NonFavorite</string>
 
 
 </resources>

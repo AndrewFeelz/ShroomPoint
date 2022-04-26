@@ -2,6 +2,7 @@ package com.feelydev.shroompointfinal.views;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,8 +34,8 @@ public class ChampionVerboseActivity extends AppCompatActivity {
     //ViewModel
     ChampionVerboseViewModel championVerboseViewModel;
 
-    //Widgets(6 imageViews and 19 textViews)
-    private ImageView imgSplash, imgPassive, imgQ, imgW, imgE, imgR;
+    //Widgets(7 imageViews and 19 textViews)
+    private ImageView imgSplash, imgPassive, imgQ, imgW, imgE, imgR, imgFavorite;
     private TextView txtName, txtTitle, txtBio, txtDifficulty, txtDamage, txtDurability, txtCC, txtMobility, txtUtility, txtPassiveName, txtPassiveDesc, txtQName, txtQDesc, txtWName, txtWDesc, txtEName, txtEDesc, txtRName, txtRDesc;
 
 
@@ -47,6 +48,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         championVerboseViewModel = new ViewModelProvider(this).get(ChampionVerboseViewModel.class);
         String champID = getIntent().getStringExtra("champID");
         initializeWidgets();
+        setFavoriteAction();
         getChampionAPI(champID);
         ObserveChangesToChampion();
 
@@ -114,7 +116,6 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         }
     }
 
-
     private void initializeWidgets() {
         imgSplash = findViewById(R.id.imgChampionSplash);
         imgPassive = findViewById(R.id.imgPassive);
@@ -122,6 +123,7 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         imgW = findViewById(R.id.imgW);
         imgE = findViewById(R.id.imgE);
         imgR = findViewById(R.id.imgR);
+        imgFavorite = findViewById(R.id.imgFav);
 
         txtName = findViewById(R.id.txtChampName);
         txtTitle = findViewById(R.id.txtChampTitle);
@@ -142,6 +144,21 @@ public class ChampionVerboseActivity extends AppCompatActivity {
         txtEDesc = findViewById(R.id.txtEDescription);
         txtRName = findViewById(R.id.txtRName);
         txtRDesc = findViewById(R.id.txtRDescription);
+    }
+
+    private void setFavoriteAction() {
+        imgFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imgFavorite.getContentDescription() == "NonFavorite"){
+                    imgFavorite.setImageResource(R.drawable.fav_full);
+                    imgFavorite.setContentDescription("Favorite");
+                } else if (imgFavorite.getContentDescription() == "Favorite"){
+                    imgFavorite.setImageResource(R.drawable.fav_empty);
+                    imgFavorite.setContentDescription("NonFavorite");
+                }
+            }
+        });
     }
 
     private void hideSystemBars() {
